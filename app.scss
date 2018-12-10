@@ -1,6 +1,6 @@
 @import "@material/button/mdc-button";
 
-.foo-button {
+.app-button {
   @include mdc-button-ink-color(teal);
   @include mdc-states(teal);
 }
