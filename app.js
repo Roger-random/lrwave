@@ -10,6 +10,11 @@ for (const appbutton of document.querySelectorAll(".app-button")) {
   new MDCRipple(appbutton);
 }
 
+import {MDCTextField} from '@material/textfield';
+for (const textfield of document.querySelectorAll(".app-textfield")) {
+  new MDCTextField(textfield);
+}
+
 var audioctx = new AudioContext();
 var oscLeft = audioctx.createOscillator();
 var oscRight = audioctx.createOscillator();
@@ -33,6 +38,7 @@ var gobtnClick = function() {
 
 var stopbtnClick = function() {
   oscLeft.stop();
+  oscRight.stop();
 }
 
 var updatelClick = function() {
