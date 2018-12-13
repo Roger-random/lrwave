@@ -1,6 +1,7 @@
 //  Tell editor about Web Audio APIs so it does not flag "not defined" error.
 /*
   global AudioContext
+  global webkitAudioContext
   global OscillatorNode
   global ChannlMergerNode
 */
@@ -22,7 +23,17 @@ for (const mdcselect of document.querySelectorAll('.mdc-select')) {
 
 const ramptime = 0.1; // Duration to ramp to new audio parameter value.
 
-var audioctx = new AudioContext();
+var audioctx;
+if (typeof AudioContext !== 'undefined') {
+  // Chrome, Firefox, Edge
+  audioctx = new AudioContext();
+} else if (typeof webkitAudioContext !== 'undefined') {
+  // Safari
+  audioctx = new webkitAudioContext();
+} else {
+  document.querySelector("#controlbtn_icon").textContent = "error";
+  document.querySelector("#errormsg").textContent = "Sorry, this browser does not support Web Audio API"
+}
 var oscLeft = audioctx.createOscillator();
 var gainLeft = audioctx.createGain();
 var oscRight = audioctx.createOscillator();
