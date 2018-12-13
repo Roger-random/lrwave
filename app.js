@@ -10,6 +10,11 @@ for (const appbutton of document.querySelectorAll(".app-button")) {
   new MDCRipple(appbutton);
 }
 
+import {MDCTextField} from '@material/textfield';
+for (const mdctextfield of document.querySelectorAll('.mdc-text-field')) {
+  new MDCTextField(mdctextfield);
+}
+
 var audioctx = new AudioContext();
 var oscLeft = audioctx.createOscillator();
 var oscRight = audioctx.createOscillator();
@@ -31,26 +36,20 @@ var gobtnClick = function() {
   oscRight.start(0);
 }
 
-var stopbtnClick = function() {
-  oscLeft.stop();
-  oscRight.stop();
-}
-
-var updatelClick = function() {
+var freqlnewinput = function() {
   var newfreq = document.querySelector("#freql").value;
   oscLeft.frequency.setValueAtTime(newfreq, audioctx.currentTime);
 }
 
-var updaterClick = function() {
+var freqrnewinput = function() {
   var newfreq = document.querySelector("#freqr").value;
   oscRight.frequency.setValueAtTime(newfreq, audioctx.currentTime);
 }
 
 var handlerSetup = function() {
   document.querySelector("#gobtn").onclick = gobtnClick;
-  document.querySelector("#stopbtn").onclick = stopbtnClick;
-  document.querySelector("#updatel").onclick = updatelClick;
-  document.querySelector("#updater").onclick = updaterClick;
+  document.querySelector("#freql").addEventListener("input", freqlnewinput);
+  document.querySelector("#freqr").addEventListener("input", freqrnewinput);
 };
 
 if ( document.readyState === "complete" ||
