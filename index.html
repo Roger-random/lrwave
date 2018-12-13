@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Left/Right Wave</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <link rel="stylesheet" href="bundle.css">
     <script type="text/javascript" src="bundle.js" async></script>
@@ -13,45 +14,46 @@
   <body class="mdc-typography">
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
-          <p class="mdc-typography--body1">Left</p>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-phone mdc-layout-grid__cell--span-4-tablet">
+          <p class="mdc-typography--body1" align="center">Left</p>
           <p>
-            <div class="mdc-text-field">
+            <div class="mdc-text-field w100">
               <input type="number" id="freql" class="mdc-text-field__input" value="440" min="0" max="50000"/>
               <label class="mdc-floating-label mdc-floating-label--float-above" for="freql">Frequency</label>
               <div class="mdc-line-ripple"></div>
             </div>
           </p>
-          <p>
+          <p align="center">
             <button class="mdc-button mdc-button--outlined" id="freqlplus">
-              +
+              <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_upward</i>
             </button>
             <button class="mdc-button mdc-button--outlined" id="freqlminus">
-              -
+              <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_downward</i>
             </button>
           </p>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-2-phone">
-          <p class="mdc-typography--body1">Right</p>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-phone mdc-layout-grid__cell--span-4-tablet">
+          <p class="mdc-typography--body1" align="center">Right</p>
           <p>
-            <div class="mdc-text-field">
+            <div class="mdc-text-field w100">
               <input type="number" id="freqr" class="mdc-text-field__input" value="440" min="0" max="50000"/>
               <label class="mdc-floating-label mdc-floating-label--float-above" for="freqr">Frequency</label>
               <div class="mdc-line-ripple"></div>
             </div>
             </p>
-          <p>
+          <p align="center">
             <button class="mdc-button mdc-button--outlined" id="freqrplus">
-              +
+              <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_upward</i>
             </button>
             <button class="mdc-button mdc-button--outlined" id="freqrminus">
-              -
+              <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_downward</i>
             </button>
           </p>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 flexcenter">
-          <button class="mdc-button mdc-button--raised" id="gobtn" autofocus>
-            Go
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet flexcenter">
+          <button class="mdc-button mdc-button--raised w100" id="gobtn" autofocus>
+            <span class="mdc-button__label">Start</span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">play_arrow</i>
           </button>
         </div>
       </div>
