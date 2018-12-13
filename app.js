@@ -20,20 +20,27 @@ for (const mdcselect of document.querySelectorAll('.mdc-select')) {
   new MDCSelect(mdcselect);
 }
 
+const ramptime = 0.1; // Duration to ramp to new audio parameter value.
+
 var audioctx = new AudioContext();
 var oscLeft = audioctx.createOscillator();
+var gainLeft = audioctx.createGain();
 var oscRight = audioctx.createOscillator();
+var gainRight = audioctx.createGain();
 var merger = audioctx.createChannelMerger(2);
 
 var gobtnClick = function(e) {
-  var freql = document.querySelector("#freql").value;
-  oscLeft.frequency.setValueAtTime(freql, audioctx.currentTime);
+  oscLeft.frequency.setValueAtTime(document.querySelector("#freql").value, audioctx.currentTime);
+  oscRight.frequency.setValueAtTime(document.querySelector("#freqr").value, audioctx.currentTime);
 
-  var freqr = document.querySelector("#freqr").value;
-  oscRight.frequency.setValueAtTime(freqr, audioctx.currentTime);
+  gainLeft.gain.setValueAtTime(document.querySelector("#gainl").value/100, audioctx.currentTime);
+  gainRight.gain.setValueAtTime(document.querySelector("#gainr").value/100, audioctx.currentTime);
 
-  oscLeft.connect(merger, 0, 0);
-  oscRight.connect(merger, 0, 1);
+  oscLeft.connect(gainLeft);
+  oscRight.connect(gainRight);
+
+  gainLeft.connect(merger, 0, 0);
+  gainRight.connect(merger, 0, 1);
 
   merger.connect(audioctx.destination);
 
@@ -44,35 +51,43 @@ var gobtnClick = function(e) {
 }
 
 var freqlnewinput = function(e) {
-  oscLeft.frequency.setValueAtTime(e.target.value, audioctx.currentTime);
+  oscLeft.frequency.linearRampToValueAtTime(e.target.value, audioctx.currentTime+ramptime);
 }
 
 var freqlminus = function() {
-  oscLeft.frequency.setValueAtTime(--document.querySelector("#freql").value, audioctx.currentTime);
+  oscLeft.frequency.linearRampToValueAtTime(--document.querySelector("#freql").value, audioctx.currentTime+ramptime);
 }
 
 var freqlplus = function() {
-  oscLeft.frequency.setValueAtTime(++document.querySelector("#freql").value, audioctx.currentTime);
+  oscLeft.frequency.linearRampToValueAtTime(++document.querySelector("#freql").value, audioctx.currentTime+ramptime);
 }
 
 var waveformlchange = function(e) {
   oscLeft.type = e.target.value;
 }
 
+var gainlnewinput = function(e) {
+  gainLeft.gain.linearRampToValueAtTime(e.target.value/100, audioctx.currentTime+ramptime);
+}
+
 var freqrnewinput = function(e) {
-  oscRight.frequency.setValueAtTime(e.target.value, audioctx.currentTime);
+  oscRight.frequency.linearRampToValueAtTime(e.target.value, audioctx.currentTime+ramptime);
 }
 
 var freqrminus = function() {
-  oscRight.frequency.setValueAtTime(--document.querySelector("#freqr").value, audioctx.currentTime);
+  oscRight.frequency.linearRampToValueAtTime(--document.querySelector("#freqr").value, audioctx.currentTime+ramptime);
 }
 
 var freqrplus = function() {
-  oscRight.frequency.setValueAtTime(++document.querySelector("#freqr").value, audioctx.currentTime);
+  oscRight.frequency.linearRampToValueAtTime(++document.querySelector("#freqr").value, audioctx.currentTime+ramptime);
 }
 
 var waveformrchange = function(e) {
   oscRight.type = e.target.value;
+}
+
+var gainrnewinput = function(e) {
+  gainRight.gain.linearRampToValueAtTime(e.target.value/100, audioctx.currentTime+ramptime);
 }
 
 var handlerSetup = function() {
@@ -81,10 +96,12 @@ var handlerSetup = function() {
   document.querySelector("#freqlminus").onclick = freqlminus;
   document.querySelector("#freqlplus").onclick = freqlplus;
   document.querySelector("#waveforml").onchange = waveformlchange;
+  document.querySelector("#gainl").addEventListener("input", gainlnewinput);
   document.querySelector("#freqr").addEventListener("input", freqrnewinput);
   document.querySelector("#freqrminus").onclick = freqrminus;
   document.querySelector("#freqrplus").onclick = freqrplus;
   document.querySelector("#waveformr").onchange = waveformrchange;
+  document.querySelector("#gainr").addEventListener("input", gainrnewinput);
 };
 
 if ( document.readyState === "complete" ||
