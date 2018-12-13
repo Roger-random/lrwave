@@ -29,25 +29,34 @@ var oscRight = audioctx.createOscillator();
 var gainRight = audioctx.createGain();
 var merger = audioctx.createChannelMerger(2);
 
-var gobtnClick = function(e) {
-  oscLeft.frequency.setValueAtTime(document.querySelector("#freql").value, audioctx.currentTime);
-  oscRight.frequency.setValueAtTime(document.querySelector("#freqr").value, audioctx.currentTime);
+oscLeft.connect(gainLeft);
+oscRight.connect(gainRight);
 
-  gainLeft.gain.setValueAtTime(document.querySelector("#gainl").value/100, audioctx.currentTime);
-  gainRight.gain.setValueAtTime(document.querySelector("#gainr").value/100, audioctx.currentTime);
+gainLeft.connect(merger, 0, 0);
+gainRight.connect(merger, 0, 1);
 
-  oscLeft.connect(gainLeft);
-  oscRight.connect(gainRight);
+merger.connect(audioctx.destination);
 
-  gainLeft.connect(merger, 0, 0);
-  gainRight.connect(merger, 0, 1);
+oscLeft.start(0);
+oscRight.start(0);
+audioctx.suspend();
 
-  merger.connect(audioctx.destination);
+var controlbtnClick = function(e) {
+  if (audioctx.state==="suspended") {
+    oscLeft.frequency.linearRampToValueAtTime(document.querySelector("#freql").value, audioctx.currentTime+ramptime);
+    oscRight.frequency.linearRampToValueAtTime(document.querySelector("#freqr").value, audioctx.currentTime+ramptime);
 
-  oscLeft.start(0);
-  oscRight.start(0);
+    gainLeft.gain.linearRampToValueAtTime(document.querySelector("#gainl").value/100, audioctx.currentTime+ramptime);
+    gainRight.gain.linearRampToValueAtTime(document.querySelector("#gainr").value/100, audioctx.currentTime+ramptime);
 
-  e.target.disabled = true;
+    audioctx.resume();
+    document.querySelector("#controlbtn_icon").textContent = "pause";
+  } else if (audioctx.state==="running") {
+    audioctx.suspend();
+    document.querySelector("#controlbtn_icon").textContent = "play_arrow";
+  } else {
+    document.querySelector("#controlbtn_icon").textContent = "error";
+  }
 }
 
 var freqlnewinput = function(e) {
@@ -91,7 +100,7 @@ var gainrnewinput = function(e) {
 }
 
 var handlerSetup = function() {
-  document.querySelector("#gobtn").onclick = gobtnClick;
+  document.querySelector("#controlbtn").onclick = controlbtnClick;
   document.querySelector("#freql").addEventListener("input", freqlnewinput);
   document.querySelector("#freqlminus").onclick = freqlminus;
   document.querySelector("#freqlplus").onclick = freqlplus;

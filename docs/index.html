@@ -18,8 +18,8 @@
           <p class="mdc-typography--body1" align="center">Left</p>
           <p>
             <div class="mdc-text-field w100">
-              <input type="number" id="freql" class="mdc-text-field__input" value="440" min="0" max="50000"/>
-              <label class="mdc-floating-label mdc-floating-label--float-above" for="freql">Frequency</label>
+              <input type="number" id="freql" class="mdc-text-field__input" value="440" min="0" max="24000"/>
+              <label class="mdc-floating-label mdc-floating-label--float-above" for="freql">Frequency (Hz)</label>
               <div class="mdc-line-ripple"></div>
             </div>
           </p>
@@ -56,8 +56,8 @@
           <p class="mdc-typography--body1" align="center">Right</p>
           <p>
             <div class="mdc-text-field w100">
-              <input type="number" id="freqr" class="mdc-text-field__input" value="440" min="0" max="50000"/>
-              <label class="mdc-floating-label mdc-floating-label--float-above" for="freqr">Frequency</label>
+              <input type="number" id="freqr" class="mdc-text-field__input" value="440" min="0" max="24000"/>
+              <label class="mdc-floating-label mdc-floating-label--float-above" for="freqr">Frequency (Hz)</label>
               <div class="mdc-line-ripple"></div>
             </div>
             </p>
@@ -90,10 +90,9 @@
             </div>
           </p>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet flexcenter">
-          <button class="mdc-button mdc-button--raised w100" id="gobtn" autofocus>
-            <span class="mdc-button__label">Start</span>
-            <i class="material-icons mdc-button__icon" aria-hidden="true">play_arrow</i>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-8-tablet" align="center">
+          <button class="mdc-button mdc-button--raised w100" id="controlbtn" autofocus>
+            <i class="material-icons mdc-button__icon" aria-hidden="true" id="controlbtn_icon">play_arrow</i>
           </button>
         </div>
       </div>
