@@ -15,6 +15,11 @@ for (const mdctextfield of document.querySelectorAll('.mdc-text-field')) {
   new MDCTextField(mdctextfield);
 }
 
+import {MDCSelect} from '@material/select';
+for (const mdcselect of document.querySelectorAll('.mdc-select')) {
+  new MDCSelect(mdcselect);
+}
+
 var audioctx = new AudioContext();
 var oscLeft = audioctx.createOscillator();
 var oscRight = audioctx.createOscillator();
@@ -50,6 +55,10 @@ var freqlplus = function() {
   oscLeft.frequency.setValueAtTime(++document.querySelector("#freql").value, audioctx.currentTime);
 }
 
+var waveformlchange = function(e) {
+  oscLeft.type = e.target.value;
+}
+
 var freqrnewinput = function(e) {
   oscRight.frequency.setValueAtTime(e.target.value, audioctx.currentTime);
 }
@@ -62,14 +71,20 @@ var freqrplus = function() {
   oscRight.frequency.setValueAtTime(++document.querySelector("#freqr").value, audioctx.currentTime);
 }
 
+var waveformrchange = function(e) {
+  oscRight.type = e.target.value;
+}
+
 var handlerSetup = function() {
   document.querySelector("#gobtn").onclick = gobtnClick;
   document.querySelector("#freql").addEventListener("input", freqlnewinput);
   document.querySelector("#freqlminus").onclick = freqlminus;
   document.querySelector("#freqlplus").onclick = freqlplus;
+  document.querySelector("#waveforml").onchange = waveformlchange;
   document.querySelector("#freqr").addEventListener("input", freqrnewinput);
   document.querySelector("#freqrminus").onclick = freqrminus;
   document.querySelector("#freqrplus").onclick = freqrplus;
+  document.querySelector("#waveformr").onchange = waveformrchange;
 };
 
 if ( document.readyState === "complete" ||
