@@ -20,7 +20,7 @@ var oscLeft = audioctx.createOscillator();
 var oscRight = audioctx.createOscillator();
 var merger = audioctx.createChannelMerger(2);
 
-var gobtnClick = function() {
+var gobtnClick = function(e) {
   var freql = document.querySelector("#freql").value;
   oscLeft.frequency.setValueAtTime(freql, audioctx.currentTime);
 
@@ -34,22 +34,42 @@ var gobtnClick = function() {
 
   oscLeft.start(0);
   oscRight.start(0);
+
+  e.target.disabled = true;
 }
 
-var freqlnewinput = function() {
-  var newfreq = document.querySelector("#freql").value;
-  oscLeft.frequency.setValueAtTime(newfreq, audioctx.currentTime);
+var freqlnewinput = function(e) {
+  oscLeft.frequency.setValueAtTime(e.target.value, audioctx.currentTime);
 }
 
-var freqrnewinput = function() {
-  var newfreq = document.querySelector("#freqr").value;
-  oscRight.frequency.setValueAtTime(newfreq, audioctx.currentTime);
+var freqlminus = function() {
+  oscLeft.frequency.setValueAtTime(--document.querySelector("#freql").value, audioctx.currentTime);
+}
+
+var freqlplus = function() {
+  oscLeft.frequency.setValueAtTime(++document.querySelector("#freql").value, audioctx.currentTime);
+}
+
+var freqrnewinput = function(e) {
+  oscRight.frequency.setValueAtTime(e.target.value, audioctx.currentTime);
+}
+
+var freqrminus = function() {
+  oscRight.frequency.setValueAtTime(--document.querySelector("#freqr").value, audioctx.currentTime);
+}
+
+var freqrplus = function() {
+  oscRight.frequency.setValueAtTime(++document.querySelector("#freqr").value, audioctx.currentTime);
 }
 
 var handlerSetup = function() {
   document.querySelector("#gobtn").onclick = gobtnClick;
   document.querySelector("#freql").addEventListener("input", freqlnewinput);
+  document.querySelector("#freqlminus").onclick = freqlminus;
+  document.querySelector("#freqlplus").onclick = freqlplus;
   document.querySelector("#freqr").addEventListener("input", freqrnewinput);
+  document.querySelector("#freqrminus").onclick = freqrminus;
+  document.querySelector("#freqrplus").onclick = freqrplus;
 };
 
 if ( document.readyState === "complete" ||

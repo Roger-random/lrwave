@@ -1,7 +1,15 @@
+$mdc-theme-primary: #f3bf10;
+$mdc-theme-secondary: #aaaaaa;
+$mdc-theme-surface: #1a1a1a;
+$mdc-theme-background: #050505;
+
+@import "@material/typography/mdc-typography";
+@import "@material/layout-grid/mdc-layout-grid";
 @import "@material/button/mdc-button";
 @import "@material/textfield/mdc-text-field";
 
-.app-button {
-  @include mdc-button-ink-color(teal);
-  @include mdc-states(teal);
+.flexcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
