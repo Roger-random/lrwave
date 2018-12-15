@@ -34,6 +34,7 @@ if (typeof AudioContext !== 'undefined') {
   document.querySelector("#controlbtn_icon").textContent = "error";
   document.querySelector("#errormsg").textContent = "Sorry, this browser does not support Web Audio API"
 }
+audioctx.suspend();
 var oscLeft = audioctx.createOscillator();
 var gainLeft = audioctx.createGain();
 var oscRight = audioctx.createOscillator();
@@ -50,7 +51,6 @@ merger.connect(audioctx.destination);
 
 oscLeft.start(0);
 oscRight.start(0);
-audioctx.suspend();
 
 var controlbtnClick = function(e) {
   if (audioctx.state==="suspended") {
