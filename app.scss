@@ -1,8 +1,7 @@
 $mdc-theme-primary: #f3bf10;
-$mdc-theme-secondary: #aaaaaa;
 $mdc-theme-surface: #1a1a1a;
+$mdc-theme-on-surface: #dddddd;
 $mdc-theme-background: #050505;
-$mdc-theme-on-background: #252525;
 
 @import "@material/typography/mdc-typography";
 @import "@material/layout-grid/mdc-layout-grid";
@@ -23,4 +22,3 @@ body {
 .w100 {
   width: 100%;
 }
-
