@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="bundle.css">
     <script type="text/javascript" src="bundle.js" async></script>
   </head>
-  <body class="mdc-typography">
+  <body class="mdc-typography mdc-theme--background">
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-phone mdc-layout-grid__cell--span-4-tablet">
-          <p class="mdc-typography--body1" align="center">Left</p>
+          <p class="mdc-typography--body1 mdc-theme--primary" align="center">Left</p>
           <p>
             <div class="mdc-text-field w100">
               <input type="number" id="freql" class="mdc-text-field__input" value="440" min="0" max="24000"/>
@@ -36,10 +36,10 @@
             <div class="mdc-select w100">
               <i class="mdc-select__dropdown-icon"></i>
               <select class="mdc-select__native-control" id="waveforml">
-                <option value="sine" selected>Sine</option>
-                <option value="square">Square</option>
-                <option value="sawtooth">Sawtooth</option>
-                <option value="triangle">Triangle</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="sine" selected>Sine</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="square">Square</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="sawtooth">Sawtooth</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="triangle">Triangle</option>
               </select>
               <label class="mdc-floating-label mdc-floating-label--float-above">Waveform</label>
               <div class="mdc-line-ripple"></div>
@@ -54,7 +54,7 @@
           </p>
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-phone mdc-layout-grid__cell--span-4-tablet">
-          <p class="mdc-typography--body1" align="center">Right</p>
+          <p class="mdc-typography--body1 mdc-theme--primary" align="center">Right</p>
           <p>
             <div class="mdc-text-field w100">
               <input type="number" id="freqr" class="mdc-text-field__input" value="440" min="0" max="24000"/>
@@ -74,10 +74,10 @@
             <div class="mdc-select w100">
               <i class="mdc-select__dropdown-icon"></i>
               <select class="mdc-select__native-control" id="waveformr">
-                <option value="sine" selected>Sine</option>
-                <option value="square">Square</option>
-                <option value="sawtooth">Sawtooth</option>
-                <option value="triangle">Triangle</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="sine" selected>Sine</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="square">Square</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="sawtooth">Sawtooth</option>
+                <option class="mdc-theme--primary mdc-theme--background" value="triangle">Triangle</option>
               </select>
               <label class="mdc-floating-label mdc-floating-label--float-above">Waveform</label>
               <div class="mdc-line-ripple"></div>

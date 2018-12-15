@@ -9,11 +9,14 @@ $mdc-theme-on-background: #252525;
 @import "@material/button/mdc-button";
 @import "@material/textfield/mdc-text-field";
 @import "@material/select/mdc-select";
+@import "@material/theme/mdc-theme";
 
-/*
-  Everything below this point feel like workarounds - there should be a way to
-  accomplish these goals using MDC Web mechanisms instead of directly on CSS?
-*/
+// Add icon to the background, centered at top of screen.
+body {
+  background-image: url("LRWaveIcon32.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+}
 
 // Workaround to make a MDC Web element expand to fill the width of its containing
 // MDC Web layout grid cell. There should be a way to do this via MDC...
@@ -21,20 +24,3 @@ $mdc-theme-on-background: #252525;
   width: 100%;
 }
 
-body {
-  background-image: url("LRWaveIcon32.png");
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: $mdc-theme-background; // Shouldn't MDC theme handle this?
-}
-
-// Expected MDC Theme to apply theme colors to these properties, but ended up
-// having to apply them explicitly here.
-p {
-  color: $mdc-theme-primary;
-}
-
-option {
-  background: $mdc-theme-background;
-  color: $mdc-theme-primary;
-}
