@@ -29,6 +29,8 @@ sample app, including the use of [Node.js](https://nodejs.org) and tools such as
 this repository, and run `npm install`
 * __Test__: Run `npm start` to launch this app in a development web server. It
 will monitor changes and automatically rebuild upon change.
+  * Configure listen port with `export PORT=8080` (or replace `8080` with port of your choice.)
+  * Configure listen IP with `export IP=0.0.0.0` (or replace `0.0.0.0` with IP address of your choice.)
 * __Publish__: Run `npm run build` to generate bundled JavaScript and CSS files
 fit for publishing.
 * __Release__: Copy updated `index.html` and built files `bundle.css` and
